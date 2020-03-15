@@ -3,15 +3,15 @@ Imagine cup-Project submission
 
 model to predict the pneumonia and other 14 types of diseases using Deeplearning models. 
 
-The Model is trained on the following keras transfer learning libraries: 
-VGG16
-VGG19
-DenseNet121
-ResNet50
-InceptionV3
-InceptionResNetV2
-NASNetMobile
-NASNetLarge
+The Model is trained on the following keras transfer learning libraries: <br>
+VGG16<br>
+VGG19<br>
+DenseNet121<br>
+ResNet50<br>
+InceptionV3<br>
+InceptionResNetV2<br>
+NASNetMobile<br>
+NASNetLarge<br>
 
 ## USE
 Visit : 
