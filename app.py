@@ -83,7 +83,7 @@ def create_cam(output_dir, image_source, model, class_names):
     return output_path
 
 def model_predict(file_path, model):
-    #image_path="C://Users/ihrishi/Desktop/files/examples/CheXNet-Keras/data/00000001_001.png"
+    #image_path=""
     image = Image.open(file_path)
     image_array = np.asarray(image.convert("RGB"))
     image_array = image_array / 255.
@@ -120,7 +120,7 @@ def upload():
         # Save the file to ./uploads
 
         basepath = os.path.dirname(__file__)
-        #basepath = "C://Users/ihrishi/Desktop/files/examples/CheXNet-Keras/webapp/"
+        #basepath = ""
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
