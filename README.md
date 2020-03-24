@@ -15,7 +15,7 @@ NASNetLarge<br>
 
 ## USE
 Visit : 
-https://pacific-reef-86234.herokuapp.com/
+https://checxray.herokuapp.com/
 
 Upload any xray image you need to scan. [for now it supports only 1024*1024 image sizes]
 There is a folder in the repos containing sample x-ray images of the required size.  
