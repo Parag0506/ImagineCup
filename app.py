@@ -1,7 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-
+import base64
+import json
+from flask import jsonify
 import tensorflow as tf
 
 from models.keras import ModelFactory
@@ -139,16 +141,20 @@ def upload():
         ##return result
         ##result="benign"
         #return result
-        #return preds
+        #return preds   
+        with open("static/cam/"+f.filename, "rb") as imageFile:
+            str = base64.b64encode(imageFile.read())
+        result = "{ 'image' : '"+str+"', 'result': '"+preds[1]+"'}"
+
         if preds[0]:
-        	return render_template("report.html", cam_image=os.path.split(preds[0])[1], result=preds[1] )
+         	return jsonify(result)
         else:
-        	return render_template("index.html")
+         	return jsonify(result)
     return None
 
 
 
 port = int(os.environ.get('PORT', 5000))
-app.run(host="0.0.0.0", port=port, debug=True)
+app.run(host="127.0.0.1", port=port, debug=True)
 #if __name__ == '__main__':
 #    app.run()

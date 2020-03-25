@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+
+<h2>Report</h2>
+<a href="/">go back</a>
+<br>
+<div>
+    <h4>Predicted Result:  {{ result }}</h4>
+</div>
+
+<div id="imgcontainer">
+    
+    <!--img src="{{ cam_image }}" alt="Cam Image"></img-->
+    <!--img id="cam_img_show" src="{{url_for('static', filename=name)}}" alt="Cam Image"></img-->
+    <img id="cam_img_show" src="{{url_for('static', filename='cam/') }}{{ cam_image }}" alt="Cam Image"></img>
+</div>
+
+{% endblock %}
