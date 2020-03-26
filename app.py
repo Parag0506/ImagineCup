@@ -146,10 +146,13 @@ def upload():
             str = base64.b64encode(imageFile.read())
         result = "{ 'image' : '"+str+"', 'result': '"+preds[1]+"'}"
 
+        response=jsonify({'image': str, 'result': preds[1]})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+
         if preds[0]:
-         	return jsonify(result)
+         	return response
         else:
-         	return jsonify(result)
+         	return response
     return None
 
 
