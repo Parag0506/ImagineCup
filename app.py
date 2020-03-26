@@ -19,8 +19,10 @@ from skimage.transform import resize
 import cv2
 from keras import backend as kb
 
-app = Flask(__name__, static_url_path='/templates')
-
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='/templates',
+            template_folder='/templates')
 class_names=['Atelectasis','Cardiomegaly','Effusion','Infiltration','Mass','Nodule','Pneumonia','Pneumothorax','Consolidation','Edema','Emphysema','Fibrosis','Pleural_Thickening','Hernia']
 
 model_factory = ModelFactory()
@@ -109,7 +111,7 @@ def model_predict(file_path, model):
 
 @app.route('/')
 def homepage():
-    return render_template("index.html")
+    return app.send_static_file("index.html")
 
 
 @app.route('/predict', methods=['POST'])
