@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 import base64
 import json
+from flask_cors import CORS
 from flask import jsonify
 import tensorflow as tf
 
@@ -20,6 +21,7 @@ import cv2
 from keras import backend as kb
 
 app = Flask(__name__)
+CORS(app)
 
 
 class_names=['Atelectasis','Cardiomegaly','Effusion','Infiltration','Mass','Nodule','Pneumonia','Pneumothorax','Consolidation','Edema','Emphysema','Fibrosis','Pleural_Thickening','Hernia']
