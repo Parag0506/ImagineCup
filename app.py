@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 import base64
 import json
-from flask_cors import CORS
+from flask_cors import CORS, logging
 from flask import jsonify
 import tensorflow as tf
 
@@ -22,6 +22,7 @@ from keras import backend as kb
 
 app = Flask(__name__)
 CORS(app)
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 
 class_names=['Atelectasis','Cardiomegaly','Effusion','Infiltration','Mass','Nodule','Pneumonia','Pneumothorax','Consolidation','Edema','Emphysema','Fibrosis','Pleural_Thickening','Hernia']
