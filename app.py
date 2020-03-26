@@ -19,8 +19,7 @@ from skimage.transform import resize
 import cv2
 from keras import backend as kb
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_url_path='/templates')
 
 class_names=['Atelectasis','Cardiomegaly','Effusion','Infiltration','Mass','Nodule','Pneumonia','Pneumothorax','Consolidation','Edema','Emphysema','Fibrosis','Pleural_Thickening','Hernia']
 
