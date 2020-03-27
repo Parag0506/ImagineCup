@@ -1,10 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-import base64
-import json
-from flask_cors import CORS, cross_origin
-from flask import jsonify
+
 import tensorflow as tf
 
 from models.keras import ModelFactory
@@ -21,8 +18,6 @@ import cv2
 from keras import backend as kb
 
 app = Flask(__name__)
-CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 class_names=['Atelectasis','Cardiomegaly','Effusion','Infiltration','Mass','Nodule','Pneumonia','Pneumothorax','Consolidation','Edema','Emphysema','Fibrosis','Pleural_Thickening','Hernia']
@@ -88,7 +83,7 @@ def create_cam(output_dir, image_source, model, class_names):
     return output_path
 
 def model_predict(file_path, model):
-    #image_path=""
+    #image_path="C://Users/ihrishi/Desktop/files/examples/CheXNet-Keras/data/00000001_001.png"
     image = Image.open(file_path)
     image_array = np.asarray(image.convert("RGB"))
     image_array = image_array / 255.
@@ -117,7 +112,6 @@ def homepage():
 
 
 @app.route('/predict', methods=['POST'])
-@cross_origin()
 def upload():
     if request.method == 'POST':
         # Get the file from post request
@@ -126,7 +120,7 @@ def upload():
         # Save the file to ./uploads
 
         basepath = os.path.dirname(__file__)
-        #basepath = ""
+        #basepath = "C://Users/ihrishi/Desktop/files/examples/CheXNet-Keras/webapp/"
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
@@ -145,18 +139,11 @@ def upload():
         ##return result
         ##result="benign"
         #return result
-        #return preds   
-        with open("static/cam/"+f.filename, "rb") as imageFile:
-            str = base64.b64encode(imageFile.read())
-        result = "{ 'image' : '"+str+"', 'result': '"+preds[1]+"'}"
-
-        response=jsonify({'image': str, 'result': preds[1]})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-
+        #return preds
         if preds[0]:
-         	return response
+        	return render_template("report.html", cam_image=os.path.split(preds[0])[1], result=preds[1] )
         else:
-         	return response
+        	return render_template("index.html")
     return None
 
 
