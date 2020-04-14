@@ -18,10 +18,12 @@ pip3 install -r requirements.txt
 
 4. Cd into the project directory and run the following in terminal:
 ```
-python app.py
+python app.py <host> <port>
 ```
 
-5. Navigate to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) and upload your image
+eg: python app.py 127.0.0.1 6000
+
+5. Navigate to mentioned port (eg : http://127.0.0.1:5000/) and upload your image
 
 
 
