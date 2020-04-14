@@ -23,7 +23,7 @@ python app.py <host> <port>
 
 eg: python app.py 127.0.0.1 6000
 
-5. Navigate to mentioned port (eg : http://127.0.0.1:5000/) and upload your image
+5. Navigate to mentioned port (eg : http://127.0.0.1:6000/) and upload your image
 
 
 
