@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-
+import sys
 import tensorflow as tf
 
 from models.keras import ModelFactory
@@ -146,9 +146,11 @@ def upload():
         	return render_template("index.html")
     return None
 
+argumentList = sys.argv 
+host_ = sys.argv[1]
+portno = sys.argv[2]
 
-
-port = int(os.environ.get('PORT', 5000))
-app.run(host="0.0.0.0", port=port, debug=True)
+port = int(os.environ.get('PORT', portno))
+app.run(host=host_, port=port, debug=True)
 #if __name__ == '__main__':
 #    app.run()
